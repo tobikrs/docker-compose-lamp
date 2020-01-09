@@ -12,7 +12,7 @@ services:
     links: 
       - mysql
     volumes: 
-      - ${DOCUMENT_ROOT-./www}:/var/www/html
+      - ${DOCUMENT_ROOT-./www}:/var/www/
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
@@ -38,13 +38,11 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      PMA_USER: ${MYSQL_USER}
-      PMA_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - '8080:80'
+      - '8081:80'
     volumes: 
       - /sessions
   redis:
